@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<library>
+    <book>
+        <author>Пушкин Александр Сергеевич</author>
+        <title>Сказки</title>
+        <publicationYear>1981</publicationYear>
+        <pages>132</pages>
+        <genres>
+            <name>Сказки</name>
+        </genres>
+    </book>
+    <book>
+        <author>Пушкин Александр Сергеевич</author>
+        <title>Капитанская дочка</title>
+        <publicationYear>1993</publicationYear>
+        <pages>97</pages>
+        <genres>
+            <name>Роман</name>
+            <name>Исторический жанр</name>
+        </genres>
+    </book>
+    <book>
+        <author>Толстой Алексей Николаевич</author>
+        <title>Гиперболоид инженера Гарина</title>
+        <publicationYear>2007</publicationYear>
+        <pages>201</pages>
+        <genres>
+            <name>Роман</name>
+            <name>Научная фантастика</name>
+        </genres>
+    </book>
+</library>
