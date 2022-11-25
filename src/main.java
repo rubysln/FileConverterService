@@ -2,6 +2,7 @@ import Objects.Library;
 import Services.JSONConvertToXML;
 import Services.JsonToPojo;
 import Services.XMLConvertToJSON;
+import StreamAPI.StreamAPI;
 
 import java.io.*;
 
@@ -10,7 +11,8 @@ public class main {
         File file = new File("input.json");
         Library library = doParse(file);
 
-        System.out.println(library.toString());
+        StreamAPI stream = new StreamAPI(library);
+        System.out.println(stream.map().toString());
     }
 
     public static void doConvert() throws IOException {
