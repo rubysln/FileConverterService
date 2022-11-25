@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 
 public class main {
     public static void main(String[] args) throws IOException {
+        
+    }
+
+    public static void doConvert() throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
 
