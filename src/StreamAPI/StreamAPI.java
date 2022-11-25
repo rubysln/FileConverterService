@@ -8,14 +8,19 @@ import java.util.stream.Collectors;
 
 public class StreamAPI {
     private Library library;
-    List<Book> books = library.getBook();
+    private List<Book> books;
 
     public StreamAPI(Library library) {
         this.library = library;
+        this.books = library.getBook();
     }
 
     public List<String> map(){
         return books.stream().map(Book::getAuthor).collect(Collectors.toList());
+    }
+
+    public List<Book> filter(Integer underThanPages, Integer underThanPublicationYear){
+        return books.stream().filter(Book -> Book.getPages() > underThanPages && Book.getPublicationYear() > underThanPublicationYear).collect(Collectors.toList());
     }
     
 }

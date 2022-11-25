@@ -9,6 +9,17 @@ public class Book {
     private int pages;
     private Genres genres;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", pages=" + pages +
+                ", genres=" + genres +
+                '}';
+    }
+
     public Book(String author, String title, Genres genres) {
         this.author = author;
         this.title = title;

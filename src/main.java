@@ -10,9 +10,9 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("input.json");
         Library library = doParse(file);
-
         StreamAPI stream = new StreamAPI(library);
-        System.out.println(stream.map().toString());
+
+        System.out.println(stream.filter(100, 1990).toString());
     }
 
     public static void doConvert() throws IOException {
