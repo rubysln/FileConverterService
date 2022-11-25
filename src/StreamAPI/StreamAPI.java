@@ -1,6 +1,7 @@
 package StreamAPI;
 
 import Objects.Book;
+import Objects.Genres;
 import Objects.Library;
 
 import java.util.List;
@@ -22,5 +23,9 @@ public class StreamAPI {
     public List<Book> filter(Integer underThanPages, Integer underThanPublicationYear){
         return books.stream().filter(Book -> Book.getPages() > underThanPages && Book.getPublicationYear() > underThanPublicationYear).collect(Collectors.toList());
     }
-    
+
+    public List<Book> forEach(String genreName){
+        books.stream().forEach(Book -> Book.setGenres(genreName));
+        return books;
+    }
 }

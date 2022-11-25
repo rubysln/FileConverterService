@@ -13,6 +13,7 @@ public class main {
         StreamAPI stream = new StreamAPI(library);
 
         System.out.println(stream.filter(100, 1990).toString());
+        System.out.println(stream.forEach("Классика"));
     }
 
     public static void doConvert() throws IOException {

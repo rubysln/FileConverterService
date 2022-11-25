@@ -16,7 +16,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", publicationYear=" + publicationYear +
                 ", pages=" + pages +
-                ", genres=" + genres +
+                ", genres=" + genres.getName() +
                 '}';
     }
 
@@ -52,5 +52,9 @@ public class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public void setGenres(String genreName) {
+        genres.setName(genres.getName() + ", " + genreName);
     }
 }
