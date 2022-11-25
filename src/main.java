@@ -1,14 +1,16 @@
+import Objects.Library;
 import Services.JSONConvertToXML;
+import Services.JsonToPojo;
 import Services.XMLConvertToJSON;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class main {
-    public static void main(String[] args) throws IOException {
-        
+    public static void main(String[] args) throws FileNotFoundException {
+        File file = new File("input.json");
+        Library library = doParse(file);
+
+        System.out.println(library.toString());
     }
 
     public static void doConvert() throws IOException {
@@ -27,5 +29,10 @@ public class main {
             File file = new File(inputFile);
             JSONConvertToXML.doConvert(file, outputFile);
         }
+    }
+
+    public static Library doParse(File file) throws FileNotFoundException {
+        JsonToPojo jsonToPojo = new JsonToPojo();
+        return jsonToPojo.parse(file);
     }
 }

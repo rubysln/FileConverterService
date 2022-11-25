@@ -7,9 +7,9 @@ public class Book {
     private String title;
     private int publicationYear;
     private int pages;
-    private List<Genres> genres;
+    private Genres genres;
 
-    public Book(String author, String title, List<Genres> genres) {
+    public Book(String author, String title, Genres genres) {
         this.author = author;
         this.title = title;
         this.genres = genres;
@@ -31,7 +31,7 @@ public class Book {
         return pages;
     }
 
-    public List<Genres> getGenres() {
+    public Genres getGenres() {
         return genres;
     }
 

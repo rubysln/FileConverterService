@@ -3,13 +3,13 @@ package Objects;
 import java.util.List;
 
 public class Genres {
-    private List<String> name;
+    private String name;
 
-    public Genres(List<String> name) {
+    public Genres(String name) {
         this.name = name;
     }
 
-    public List<String> getName() {
+    public String getName() {
         return name;
     }
 }

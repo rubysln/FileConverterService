@@ -3,13 +3,20 @@ package Objects;
 import java.util.List;
 
 public class Library {
-    private List<Book> books;
+    private List<Book> book;
 
     public Library(List<Book> books) {
-        this.books = books;
+        this.book = books;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Book> getBook() {
+        return book;
+    }
+
+    @Override
+    public String toString() {
+        return "Library{" +
+                "book=" + book +
+                '}';
     }
 }

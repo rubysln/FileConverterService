@@ -15,8 +15,7 @@
         <publicationYear>1993</publicationYear>
         <pages>97</pages>
         <genres>
-            <name>Роман</name>
-            <name>Исторический жанр</name>
+            <name>Роман, Исторический жанр</name>
         </genres>
     </book>
     <book>
@@ -25,8 +24,7 @@
         <publicationYear>2007</publicationYear>
         <pages>201</pages>
         <genres>
-            <name>Роман</name>
-            <name>Научная фантастика</name>
+            <name>Роман, Научная фантастика</name>
         </genres>
     </book>
 </library>
