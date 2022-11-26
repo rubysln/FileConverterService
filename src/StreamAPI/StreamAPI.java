@@ -4,6 +4,7 @@ import Objects.Book;
 import Objects.Genres;
 import Objects.Library;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,8 +18,8 @@ public class StreamAPI {
         this.books = library.getBook();
     }
 
-    public List<String> map(){
-        return books.stream().map(Book::getAuthor).collect(Collectors.toList());
+    public List<Integer> map(){
+        return books.stream().map(Book::getPages).collect(Collectors.toList());
     }
 
     public List<Book> filter(Integer underThanPages, Integer underThanPublicationYear){
@@ -32,5 +33,9 @@ public class StreamAPI {
 
     public Set<String> collect(){
         return books.stream().map(Book::getAuthor).collect(Collectors.toSet());
+    }
+
+    public List<Book> sorted(){
+        return books.stream().sorted(Comparator.comparing(Book::getPublicationYear)).collect(Collectors.toList());
     }
 }

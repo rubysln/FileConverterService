@@ -16,6 +16,7 @@ public class main {
         System.out.println(stream.filter(100, 1990).toString());
         System.out.println(stream.forEach("Классика").toString());
         System.out.println(stream.collect().toString());
+        System.out.println(stream.sorted().toString());
     }
 
     public static void doConvert() throws IOException {
