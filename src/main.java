@@ -12,8 +12,10 @@ public class main {
         Library library = doParse(file);
         StreamAPI stream = new StreamAPI(library);
 
+        System.out.println(stream.map());
         System.out.println(stream.filter(100, 1990).toString());
-        System.out.println(stream.forEach("Классика"));
+        System.out.println(stream.forEach("Классика").toString());
+        System.out.println(stream.collect().toString());
     }
 
     public static void doConvert() throws IOException {

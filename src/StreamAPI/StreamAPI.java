@@ -5,6 +5,7 @@ import Objects.Genres;
 import Objects.Library;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class StreamAPI {
@@ -27,5 +28,9 @@ public class StreamAPI {
     public List<Book> forEach(String genreName){
         books.stream().forEach(Book -> Book.setGenres(genreName));
         return books;
+    }
+
+    public Set<String> collect(){
+        return books.stream().map(Book::getAuthor).collect(Collectors.toSet());
     }
 }
