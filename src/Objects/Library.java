@@ -9,7 +9,7 @@ import java.util.Objects;
 @XmlRootElement(name = "library")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Library {
-    @XmlElement(name = "books")
+    @XmlElement(name = "book")
     private List<Book> books;
 
     public Library(){
