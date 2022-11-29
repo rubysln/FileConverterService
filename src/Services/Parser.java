@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-        public Authors parseFromXML() throws ParserConfigurationException, SAXException, IOException {
+        public Authors parseFromXML(String input) throws ParserConfigurationException, SAXException, IOException {
             /*
             В данном методе мы десериализируем файл XML, изменяем его структуру и сохраняем в объект.
             */
@@ -29,7 +29,7 @@ public class Parser {
             ParserHandler handler = new ParserHandler(); // Инициализируем наш хандлер для ручного парсинга файла.
             SAXParser saxParser = saxParserFactory.newSAXParser(); // Создаем парсер.
 
-            File file = new File("input.xml");
+            File file = new File(input);
             saxParser.parse(file, handler);
 
             Authors authors = handler.getAuthors();
@@ -65,7 +65,7 @@ public class Parser {
             */
 
             Gson gson = new Gson();
-            Files.write(Path.of("output.json"), gson.toJson(authors).toString().getBytes());
+            Files.write(Path.of(output + ".json"), gson.toJson(authors).toString().getBytes());
         }
 
         public Library parseFromJson(File file) throws IOException {
