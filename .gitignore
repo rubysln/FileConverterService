@@ -3,7 +3,6 @@
 /httpRequests/
 /dataSources/
 /dataSources.local.xml
-META-INF
 out
 output.json
 output.xml
