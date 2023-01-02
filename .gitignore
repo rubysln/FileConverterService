@@ -6,3 +6,7 @@
 META-INF
 out
 target
+output.json
+output.xml
+FileConverterService.jar
+start.bat

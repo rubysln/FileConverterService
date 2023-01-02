@@ -2,39 +2,41 @@ package Objects;
 
 
 public class Book {
-    private String author;
-    private String title;
-    private Details details;
 
-    public String getTitle() {
-        return title;
-    }
+  private String author;
+  private String title;
+  private Details details;
 
-    public Details getDetails() {
-        return details;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public Details getDetails() {
+    return details;
+  }
 
-    public void setDetails(Details details) {
-        this.details = details;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getAuthor() {
-        return author;
-    }
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+  public void setDetails(Details details) {
+    this.details = details;
+  }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", details=" + details +
-                '}';
-    }
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  @Override
+  public String toString() {
+    return "Book{" +
+        "author='" + author + '\'' +
+        ", title='" + title + '\'' +
+        ", details=" + details +
+        '}';
+  }
 }
