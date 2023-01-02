@@ -1,9 +1,9 @@
-package Services;
+package services;
 
-import Objects.Author;
-import Objects.Authors;
-import Objects.Book;
-import Objects.Library;
+import objects.Author;
+import objects.Authors;
+import objects.Book;
+import objects.Library;
 import com.google.gson.Gson;
 import org.xml.sax.SAXException;
 

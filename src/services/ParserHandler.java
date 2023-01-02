@@ -1,9 +1,9 @@
-package Services;
+package services;
 
-import Objects.Author;
-import Objects.Authors;
-import Objects.Book;
-import Objects.Details;
+import objects.Author;
+import objects.Authors;
+import objects.Book;
+import objects.Details;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
