@@ -58,12 +58,10 @@ public class ParserHandler extends DefaultHandler {
 
   @Override
   public void startDocument() throws SAXException {
-    System.out.println("Start parsing");
   }
 
   @Override
   public void endDocument() throws SAXException {
-    System.out.println("End parsing");
 
     authors.setAuthors(
         authorList); // Финальный этап работы алгоритма - присваивание значений коллекции авторов в объект Authors, который мы и должны получить.
@@ -72,7 +70,6 @@ public class ParserHandler extends DefaultHandler {
   @Override
   public void startElement(String uri, String localName, String qName, Attributes attributes)
       throws SAXException {
-    System.out.println("Loading...");
 
     currentTagName = qName; // Присваивание переменной название текущего тега.
     if (currentTagName != null) {
@@ -87,7 +84,6 @@ public class ParserHandler extends DefaultHandler {
 
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
-    System.out.println("Loading...");
 
     currentTagName = qName; // Повторное присваивание значения необходимо, т.к когда идет закрытие нескольких тегов подряд, currentTagName не обновляется.
     if (currentTagName == null) {
@@ -130,12 +126,10 @@ public class ParserHandler extends DefaultHandler {
     if (isBook) {
       switch (currentTagName) {
         case (TAG_AUTHOR):
-          author = new Author(new String(
-              ch, start, length));
+          author = new Author(new String(ch, start, length));
           break;
         case (TAG_TITLE):
-          book.setTitle(new String(
-              ch, start, length));
+          book.setTitle(new String(ch, start, length));
           break;
       }
       if (isDetails) {
@@ -144,16 +138,13 @@ public class ParserHandler extends DefaultHandler {
             details.setGenres(new String(ch, start, length));
             break;
           case (TAG_PAGES):
-            details.setPages(Integer.parseInt(
-                new String(ch, start, length)));
+            details.setPages(Integer.parseInt(new String(ch, start, length)));
             break;
           case (TAG_PUBLICATIONYEAR):
-            details.setPublicationYear(Integer.parseInt(
-                new String(ch, start, length)));
+            details.setPublicationYear(Integer.parseInt(new String(ch, start, length)));
             break;
           case (TAG_ABOUT):
-            details.setAbout(new String(
-                ch, start, length));
+            details.setAbout(new String(ch, start, length));
             break;
         }
       }
