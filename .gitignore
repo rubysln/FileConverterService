@@ -4,6 +4,8 @@
 /dataSources/
 /dataSources.local.xml
 out
+META-INF
+target
 output.json
 output.xml
 FileConverterService.jar
