@@ -20,24 +20,11 @@ import java.util.Scanner;
 public class Main {
 
   public static void main(String[] args)
-      throws ParserConfigurationException, IOException, SAXException, JAXBException {
+      throws JAXBException, IOException {
     Parser parser = new Parser();
-
-    System.out.println("Введите название исходного файла с расширением: ");
-    Scanner scanner = new Scanner(System.in);
-    String input = scanner.nextLine();
-    String output = null;
-
-    if (input.matches(".+\\.xml")) {
-      Authors authors = parser.parseFromXML(input);
-      System.out.println("Введите название сохраняемого JSON файла: ");
-      output = scanner.nextLine();
-      parser.parseToJson(authors, output);
-    } else if (input.matches(".+\\.json")) {
-      Library library = parser.parseFromJson(new File(input));
-      System.out.println("Введите название сохраняемого XML файла: ");
-      output = scanner.nextLine();
-      parser.parseToXML(library, output);
-    }
+    Authors authors = parser.parseFromXML(new File("input.xml"));
+    parser.parseToJson(authors, "output");
+    Library library = parser.parseFromJson(new File("output.json"));
+    parser.parseToXML(library, "output.xml");
   }
 }

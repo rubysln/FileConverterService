@@ -1,11 +1,12 @@
 package objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Author {
 
   private String name;
-  private List<Book> books;
+  private List<Book> books = new ArrayList<>();
 
   public Author(String name) {
     this.name = name;
@@ -26,6 +27,7 @@ public class Author {
   public void setBooks(List<Book> books) {
     this.books = books;
   }
+  public void addBook(Book book){this.books.add(book);}
 
   @Override
   public String toString() {

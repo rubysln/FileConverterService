@@ -6,6 +6,9 @@ public class Authors {
 
   private List<Author> authors;
 
+  public Authors(List<Author> authors) {
+    this.authors = authors;
+  }
 
   public List<Author> getAuthors() {
     return authors;

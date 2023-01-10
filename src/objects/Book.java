@@ -1,6 +1,9 @@
 package objects;
 
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "book")
 public class Book {
 
   private String author;
@@ -33,10 +36,7 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{" +
-        "author='" + author + '\'' +
-        ", title='" + title + '\'' +
-        ", details=" + details +
-        '}';
+    return "Book{" + "author='" + author + '\'' + ", title='" + title + '\'' + ", details="
+        + details + '}';
   }
 }

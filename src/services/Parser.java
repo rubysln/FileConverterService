@@ -1,18 +1,17 @@
 package services;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.xml.bind.Unmarshaller;
 import objects.Author;
 import objects.Authors;
 import objects.Book;
 import objects.Library;
 import com.google.gson.Gson;
-import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,46 +20,30 @@ import java.util.List;
 
 public class Parser {
 
-  public Authors parseFromXML(String input)
-      throws ParserConfigurationException, SAXException, IOException {
+  public Authors parseFromXML(File file)
+      throws JAXBException {
             /*
             В данном методе мы десериализируем файл XML, изменяем его структуру и сохраняем в объект.
             */
 
-    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance(); // Создание фабрики для работы с парсером.
-    ParserHandler handler = new ParserHandler(); // Инициализируем наш хандлер для ручного парсинга файла.
-    SAXParser saxParser = saxParserFactory.newSAXParser(); // Создаем парсер.
+    JAXBContext jaxbContext = JAXBContext.newInstance(Library.class);
+    Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+    Library library = (Library) unmarshaller.unmarshal(file);
 
-    File file = new File(input);
-    saxParser.parse(file, handler);
-
-    Authors authors = handler.getAuthors();
-    return endParse(authors);
-  }
-
-  private Authors endParse(Authors authors) {
-            /*
-            Данный метод необходим, потому что мы из библиотеки книг будем делать список авторов с их книгами, внутри метода
-            при помощи алгоритма дубликаты авторов в коллекции будут удалены, а книги дубликатов присвоены оригиналам.
-            */
-
-    for (int i = 0; i < authors.getAuthors().size(); i++) {
-      Author author = authors.getAuthors().get(i);
-      String name = author.getName();
-      for (int j = 0; j < authors.getAuthors().size(); j++) {
-        if (i == j) {
-          continue;
-        } else {
-          Author secondAuthor = authors.getAuthors().get(j);
-          String secondName = secondAuthor.getName();
-          if (name.equals(secondName)) {
-            author.getBooks().add(secondAuthor.getBook());
-            authors.getAuthors().remove(secondAuthor);
-          }
+    List<Author> authors = new ArrayList<>();
+    List<Book> libraryBooks = library.getBooks();
+    Set<String> authorNames = libraryBooks.stream().map(Book::getAuthor).collect(Collectors.toSet());
+    for(var authorName : authorNames){
+      Author author = new Author(authorName);
+      for(var libraryBook : libraryBooks){
+        if(authorName.equals(libraryBook.getAuthor())){
+          author.addBook(libraryBook);
+          libraryBook.setAuthor(null);
         }
       }
+      authors.add(author);
     }
-    return authors;
+    return new Authors(authors);
   }
 
   public void parseToJson(Authors authors, String output) throws IOException {
@@ -82,10 +65,10 @@ public class Parser {
     Authors authors = gson.fromJson(
         fileReader, Authors.class);
     List<Book> books = new ArrayList<>();
-    for (Author e : authors.getAuthors()) {
-      for (Book j : e.getBooks()) {
-        j.setAuthor(e.getName());
-        books.add(j);
+    for (Author element : authors.getAuthors()) {
+      for (Book book : element.getBooks()) {
+        book.setAuthor(element.getName());
+        books.add(book);
       }
     }
     return new Library(books);
@@ -103,6 +86,6 @@ public class Parser {
     JAXBContext context = JAXBContext.newInstance(Library.class);
     Marshaller marshaller = context.createMarshaller();
     marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-    marshaller.marshal(library, new File(output));
+    marshaller.marshal(library, new File(output+".xml"));
   }
 }

@@ -1,6 +1,9 @@
 package objects;
 
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Details {
 
   private int publicationYear;
@@ -43,11 +46,7 @@ public class Details {
 
   @Override
   public String toString() {
-    return "Details{" +
-        "publicationYear=" + publicationYear +
-        ", pages=" + pages +
-        ", genres='" + genres + '\'' +
-        ", about='" + about + '\'' +
-        '}';
+    return "Details{" + "publicationYear=" + publicationYear + ", pages=" + pages + ", genres='"
+        + genres + '\'' + ", about='" + about + '\'' + '}';
   }
 }

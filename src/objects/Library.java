@@ -1,5 +1,6 @@
 package objects;
 
+import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -12,7 +13,7 @@ import java.util.Objects;
 public class Library {
 
   @XmlElement(name = "book")
-  private List<Book> books;
+  private List<Book> books = new ArrayList<>();
 
   public Library() {
 
