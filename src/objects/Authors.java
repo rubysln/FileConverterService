@@ -1,27 +1,16 @@
 package objects;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Authors {
 
   private List<Author> authors;
 
   public Authors(List<Author> authors) {
     this.authors = authors;
-  }
-
-  public List<Author> getAuthors() {
-    return authors;
-  }
-
-  public void setAuthors(List<Author> authors) {
-    this.authors = authors;
-  }
-
-  @Override
-  public String toString() {
-    return "Authors{" +
-        "authors=" + authors +
-        '}';
   }
 }

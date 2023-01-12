@@ -3,6 +3,7 @@ package services;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.xml.bind.Unmarshaller;
+import lombok.val;
 import objects.Author;
 import objects.Authors;
 import objects.Book;
@@ -26,17 +27,18 @@ public class Parser {
             В данном методе мы десериализируем файл XML, изменяем его структуру и сохраняем в объект.
             */
 
-    JAXBContext jaxbContext = JAXBContext.newInstance(Library.class);
-    Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-    Library library = (Library) unmarshaller.unmarshal(file);
+    val jaxbContext = JAXBContext.newInstance(Library.class);
+    val unmarshaller = jaxbContext.createUnmarshaller();
+    val library = (Library) unmarshaller.unmarshal(file);
 
     List<Author> authors = new ArrayList<>();
     List<Book> libraryBooks = library.getBooks();
-    Set<String> authorNames = libraryBooks.stream().map(Book::getAuthor).collect(Collectors.toSet());
-    for(var authorName : authorNames){
+    Set<String> authorNames = libraryBooks.stream().map(Book::getAuthor)
+        .collect(Collectors.toSet());
+    for (var authorName : authorNames) {
       Author author = new Author(authorName);
-      for(var libraryBook : libraryBooks){
-        if(authorName.equals(libraryBook.getAuthor())){
+      for (var libraryBook : libraryBooks) {
+        if (authorName.equals(libraryBook.getAuthor())) {
           author.addBook(libraryBook);
           libraryBook.setAuthor(null);
         }
@@ -51,7 +53,7 @@ public class Parser {
             Для сериализации была выбрана библиотека GSON, удобство, простота, отсутствие багов после тестирования в созданном файле.
             */
 
-    Gson gson = new Gson();
+    val gson = new Gson();
     Files.write(Path.of(output + ".json"), gson.toJson(authors).toString().getBytes());
   }
 
@@ -60,8 +62,8 @@ public class Parser {
             Для десериализации была выбрана та же библиотека GSON по тем же причинам, идеальная работа с .json файлами!
             */
 
-    Gson gson = new Gson();
-    FileReader fileReader = new FileReader(file);
+    val gson = new Gson();
+    val fileReader = new FileReader(file);
     Authors authors = gson.fromJson(
         fileReader, Authors.class);
     List<Book> books = new ArrayList<>();
@@ -76,16 +78,12 @@ public class Parser {
 
   public void parseToXML(Library library, String output) throws JAXBException {
             /*
-            Тут уже интереснее..
-            Для сериализации в файл XML был выбран JAXB, т.к в ручную прописывать хандлер не имеет смысла, мною это было сделано без использования лишних библиотек,
-            вручную.
-            А JAXB как по мне отличный аналог для де/сериализации XML-файлов, имеет похожий принцип построения кода как GSON, за исключением того,
-            что для работы сериализации в файл необходимо прописывать в объектах аннотации, но как по мне, это очень даже удобно.
+            Сериализация была сделана при помощи JAXB
             */
 
-    JAXBContext context = JAXBContext.newInstance(Library.class);
-    Marshaller marshaller = context.createMarshaller();
+    val context = JAXBContext.newInstance(Library.class);
+    val marshaller = context.createMarshaller();
     marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-    marshaller.marshal(library, new File(output+".xml"));
+    marshaller.marshal(library, new File(output + ".xml"));
   }
 }
