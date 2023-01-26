@@ -1,10 +1,12 @@
 import objects.Authors;
 import objects.Library;
-import services.Parser;
+import services.ParseToJson;
+import services.ParseToXML;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import services.SaveTo;
 
 /*
     Если в кратце описывать сделанную мною работу, то получится как-то так:
@@ -18,10 +20,9 @@ public class Main {
 
   public static void main(String[] args)
       throws JAXBException, IOException {
-    Parser parser = new Parser();
-    Authors authors = parser.parseFromXML(new File("input.xml"));
-    parser.parseToJson(authors, "output");
-    Library library = parser.parseFromJson(new File("output.json"));
-    parser.parseToXML(library, "output.xml");
+    Authors authors = ParseToJson.parseFromXML(new File("input.xml"));
+    SaveTo.toJson(authors, "output");
+    Library library = ParseToXML.parseFromJson(new File("output.json"));
+    SaveTo.toXML(library, "output.xml");
   }
 }
