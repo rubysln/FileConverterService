@@ -1,5 +1,6 @@
-import objects.Authors;
-import objects.Library;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import lombok.val;
 import services.ParseToJson;
 import services.ParseToXML;
 
@@ -20,9 +21,22 @@ public class Main {
 
   public static void main(String[] args)
       throws JAXBException, IOException {
-    Authors authors = ParseToJson.parseFromXML(new File("input.xml"));
-    SaveTo.toJson(authors, "output");
-    Library library = ParseToXML.parseFromJson(new File("output.json"));
-    SaveTo.toXML(library, "output.xml");
+    val bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Введите имя исходного файла с расширением");
+    val inputFileName = bufferedReader.readLine();
+    val inputFile = new File(inputFileName);
+    if (inputFile.exists()) {
+      System.out.println("Введите имя финального файла без расширения:");
+      val outputFileName = bufferedReader.readLine();
+      if (inputFileName.matches(".+\\.xml")) {
+        val authors = ParseToJson.parseFromXML(inputFile);
+        SaveTo.toJson(authors, outputFileName);
+      } else if (inputFileName.matches(".+\\.json")) {
+        val library = ParseToXML.parseFromJson(inputFile);
+        SaveTo.toXML(library, outputFileName);
+      }
+    } else {
+      System.out.println("Ошибка: Данного файла не существует.");
+    }
   }
 }
