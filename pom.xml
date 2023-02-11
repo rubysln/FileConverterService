@@ -46,7 +46,17 @@
   </dependencies>
   <build>
     <sourceDirectory>src/main</sourceDirectory>
-    <testSourceDirectory>src/tests</testSourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
