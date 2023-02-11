@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import lombok.val;
+import objects.Authors;
 import services.ParseToJson;
 import services.ParseToXML;
 
